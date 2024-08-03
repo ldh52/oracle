@@ -1,29 +1,26 @@
-[오라클 11g XE 다운로드]
+[Oracle 11g XE 다운로드]
 오라클에 로그인하고 아래의 페이지에서 오라클 DB 를 다운로드하세요. 
 64비트 윈도우용 11gXE 링크를 클릭하면 됩니다
 https://www.oracle.com/database/technologies/xe-prior-release-downloads.html
 
+[Oracle 11g XE 설치]
 다운로드한 OracleXE112_Win64.zip 파일을 더블클릭하여 압축을 해제하고 
 DISK1/setup.exe 파일을 더블클릭하면 설치가 시작됩니다.
 설치시에 표시되는 창에서는 모두 기본으로 설정하고 
 암호입력창에는 sku를 입력해주면 설치가 완료됩니다(약 5분정도 소요됨)
 
-
 [Oracle SQL Developer 다운로드]
 https://www.oracle.com/database/sqldeveloper/technologies/download/
 위의 사이트에서 Windows 64-bit with JDK 11 included 를 다운로드하세요
 
-
 [Oracle SQL Developer 설치]
 압축해제 > 이전 환경을 임포트하시겠습니가? (아니오)
-
 
 [오라클 학습용 데이터베이스 계정 생성하기]
 윈도우 시작 > Run SQL Command Line >
 SQL> conn system/sku;
 SQL> @C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
 SQL> conn scott/TIGER;
-
 
 [jdbc 다운로드 / 설치]
 https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
@@ -32,7 +29,6 @@ https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
 -- Java프로세스에서 Oracle 프로세스에 연결할 수 있는 중간자 역할을 하는 소프트웨어가 필요함
 -- JDBC(Java Database Connectivity), JDBC Driver(ojdbc11.jar)
 -- 프로젝트에 JDBC 드라이버를 반드시 포함해야만 Java와 DB가 연결된다
-
 
 [이클립스에서 jdbc 경로 설정]
 File - Properties - Java Bui;d Path - Libraries - Classpath - Add External JARS
