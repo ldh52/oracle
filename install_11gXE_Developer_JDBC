@@ -31,4 +31,4 @@ https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
 -- 프로젝트에 JDBC 드라이버를 반드시 포함해야만 Java와 DB가 연결된다
 
 [이클립스에서 jdbc 경로 설정]
-File - Properties - Java Bui;d Path - Libraries - Classpath - Add External JARS
+File - Properties - Java Build Path - Libraries - Classpath - Add External JARS
