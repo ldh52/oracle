@@ -280,8 +280,68 @@ SELECT * FROM attach;
 SELECT * FROM board b INNER JOIN attach a
 ON b.bid=a.bid;
 
+
+SELECT b.bid, contents, fname FROM board b LEFT OUTER JOIN attach a
+ON b.bid = a.bid
+ORDER BY bid;
+
+-- 한개의 글이 중복되는 경우에는 한개의 행으로 정리하기
+SELECT LISTAGG(ename, ',') WITHIN GROUP(ORDER BY deptno) FROM emp2;
+
+SELECT LISTAGG(ename, ',') WITHIN GROUP(ORDER BY deptno) FROM emp2
+WHERE deptno = 20;
+
+SELECT deptno, LISTAGG(ename, ',') WITHIN GROUP(ORDER BY deptno) FROM emp2
+GROUP BY deptno;
+
+SELECT deptno, LISTAGG(empno||'-'||ename,',') WITHIN GROUP(ORDER BY deptno) 
+FROM emp2
+GROUP BY deptno;
+
+-- board, attach 테이블로부터 화면에 목록을 표시할 때 한개의 글에 딸린 첨부파일 이름을
+-- 한개의 컬럼에 모두 합쳐서 화면에 표시해보세요.
+
+-- attach 테이블만 사용하는 경우
+SELECT bid, LISTAGG(fname,',') WITHIN GROUP(ORDER BY bid) files
+FROM attach GROUP BY bid;
+
+-- board, attach 테이블을 JOIN으로 가져오는 경우
+SELECT b.bid, b.title, LISTAGG(fname,',') WITHIN GROUP(ORDER BY a.bid)files
+FROM board b LEFT OUTER JOIN attach a
+ON b.bid=a.bid
+GROUP BY b.bid, b.title
+ORDER BY b.bid;
+
+--상관관계 서브커리를 사용한 게시글과 첨부파일 표시하기
+SELECT bid,title,contents,
+(
+    SELECT LISTAGG(fnum||','||fname,'/') WITHIN GROUP(ORDER BY fnum) files
+    FROM attach WHERE bid=b.bid
+)att
+FROM board b;
+
+-- Oracle 그룹함수, 단일행 함수, OVER()
+-- 그룹함수 : COUNT(*)-다수개의 행을 대상으로 조사하여 한개의 값을 산출함
+-- 단일행함수: 한개의 행에서 값을 산출함
+SELECT ename, COUNT(*) FROM emp2;
+SELECT ename, COUNT(*)OVER() "사원수" FROM emp2;
+
 -- Java와 DB 연동
 -- Java에서 SQL 문장을 오라클에 전달하여 실행하게 하고 그 결과를 Java에서 처리한다
 -- Java프로세스에서 Oracle 프로세스에 연결할 수 있는 중간자 역할을 하는 소프트웨어가 필요함
 -- JDBC(Java Database Connectivity), JDBC Driver(ojdbc11.jar)
 -- 프로젝트에 JDBC 드라이버를 반드시 포함해야만 Java와 DB가 연결된다
+
+-- JOIN 결과 다수개의 행으로 표현된 내용을 한개의 행으로 합쳐서 보여주는 경우
+-- 부서별 사원의 이름이 한개의 컬럼으로 리턴되는 부서인원정보 출력기능을 작성
+-- EmpDAO에 getEmpsByDeptno()선언:부서별 사원의 이름을 리턴, Map<String,String>
+SELECT deptno, COUNT(empno) "사원수", 
+LISTAGG(ename, ',') WITHIN GROUP(ORDER BY deptno) names
+FROM emp2
+GROUP BY deptno;
+
+SELECT bid,title,
+(
+    SELECT COUNT(*) FROM attach a WHERE a.bid=b.bid
+)attcnt
+FROM board b;
