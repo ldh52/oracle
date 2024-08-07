@@ -326,12 +326,6 @@ FROM board b;
 SELECT ename, COUNT(*) FROM emp2;
 SELECT ename, COUNT(*)OVER() "사원수" FROM emp2;
 
--- Java와 DB 연동
--- Java에서 SQL 문장을 오라클에 전달하여 실행하게 하고 그 결과를 Java에서 처리한다
--- Java프로세스에서 Oracle 프로세스에 연결할 수 있는 중간자 역할을 하는 소프트웨어가 필요함
--- JDBC(Java Database Connectivity), JDBC Driver(ojdbc11.jar)
--- 프로젝트에 JDBC 드라이버를 반드시 포함해야만 Java와 DB가 연결된다
-
 -- JOIN 결과 다수개의 행으로 표현된 내용을 한개의 행으로 합쳐서 보여주는 경우
 -- 부서별 사원의 이름이 한개의 컬럼으로 리턴되는 부서인원정보 출력기능을 작성
 -- EmpDAO에 getEmpsByDeptno()선언:부서별 사원의 이름을 리턴, Map<String,String>
