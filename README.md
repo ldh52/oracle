@@ -1,5 +1,6 @@
 ### 설치
 oracle 11g XE / oracle Developer / JDBC <br />
+└ Update install_11gXE_Developer_JDBC
 
 ### JDBC : Java와 DB 연동
 └ Java에서 SQL 문장을 오라클에 전달하여 실행하게 하고 그 결과를 Java에서 처리한다<br />
@@ -8,4 +9,4 @@ oracle 11g XE / oracle Developer / JDBC <br />
 └ 프로젝트에 JDBC 드라이버를 반드시 포함해야만 Java와 DB가 연결된다<br />
 
 ### 오라클 기본 명령어 / 자바 연동
-basic.sql
+└ basic.sql
